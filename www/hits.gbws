@@ -1,0 +1,19 @@
+string hits,
+integer count,0
+
+loadfile hits.dat
+getstring hits
+closefile
+
+strval count,hits
+let count=count+1
+
+newfile hits.dat
+putstring *count
+closefile
+
+output <!DOCTYPE html><html style="background:gray;">Hits:
+output *count
+output </html></body>
+
+end

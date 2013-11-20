@@ -1,0 +1,23 @@
+string s1,
+string s2,
+
+formget s1
+formget s2
+
+strcmp s1,s2,match
+
+output no match
+goto wait
+
+label match
+output match
+
+label wait
+
+output <form action="strcmp.gbws" method="get">
+output <input type="text" name="s1"><br />
+output <input type="text" name="s2"><br />
+output <input type="submit" value="Compare Strings">
+output </form>
+
+end

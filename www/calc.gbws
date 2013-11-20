@@ -1,0 +1,75 @@
+integer num1,0
+integer num2,0
+integer calc,0
+
+string getnum1,
+string getnum2,
+string oper,
+string add,+
+string sub,-
+string mul,*
+string div,/
+
+formget getnum1
+formget getnum2
+formget oper
+
+strval num1,getnum1
+strval num2,getnum2
+
+strcmp oper,add,addfunc
+strcmp oper,sub,subfunc
+strcmp oper,mul,mulfunc
+strcmp oper,div,divfunc
+
+goto prepareoutput
+
+label addfunc
+
+let calc=num1+num2
+
+goto prepareoutput
+
+label subfunc
+
+let calc=num1-num2
+
+goto prepareoutput
+
+label mulfunc
+
+let calc=num1*num2
+
+goto prepareoutput
+
+label divfunc
+
+let calc=num1/num2
+
+label prepareoutput
+
+output <!DOCTYPE html><html><body style="background:lightblue;color:blue;">
+output <head><title>Geek Basic Web Calculator</title></head>
+
+output <b>Geek Basic Web Calculator</b><br /><br />
+
+output <form action="calc.gbws" method="get">
+output <input type="text" name="getnum1"> 1st number<br />
+output <input type="text" name="oper"> Operator (+, -, /, *)<br />
+output <input type="text" name="getnum2"> 2nd number<br />
+output <br /><input type="submit" value="Calculate">
+output </form>
+
+output <br /><i>
+
+output *num1
+output $oper
+output *num2
+output &nbsp;=&nbsp;
+output *calc
+
+output </i>
+
+output </body></html>
+
+end

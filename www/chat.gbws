@@ -1,0 +1,82 @@
+string name,
+string message,
+string getdate,
+string gettime,
+string savedata,
+string filein,
+string chatbuffer,
+string null,
+
+integer endfile,0
+
+formget name
+formget message
+
+strcmp message,null,prepareoutput
+
+date getdate
+time gettime
+
+concat savedata,$null,$getdate
+concat savedata,$savedata,&nbsp;
+concat savedata,$savedata,$gettime
+concat savedata,$savedata,<br />
+concat savedata,$savedata,$name
+concat savedata,$savedata,&nbsp;:&nbsp;
+concat savedata,$savedata,$message
+concat savedata,$savedata,<br /><br />
+
+strset chatbuffer,
+
+loadfile chatlog.html
+
+label fileread
+
+checkfile endfile
+
+if endfile<>0:emptyfile
+
+getstring filein
+concat chatbuffer,$chatbuffer,$filein
+
+if endfile=0:fileread
+
+label emptyfile
+
+closefile
+
+concat chatbuffer,$savedata,$chatbuffer
+
+newfile chatlog.html
+putstring $chatbuffer
+closefile
+
+label prepareoutput
+
+output <!DOCTYPE html><html><body style="background:blue;">
+output <head><title>Geek Basic Browser Chat</title></head>
+
+output <div style="width:480px;margin-left:auto;margin-right:auto;border:0px;background:lightblue;color:blue;text-align:center;">
+
+output <br /><b><a href="http://www.geekbasic.com">Geek Basic</a> Browser Chat</b><br />
+output <sub>Powered by the Geek Basic Web Server and Scripting Language</sub><br /><br />
+
+output </div><br />
+
+output <table style="width:480px;margin-left:auto;margin-right:auto;border:0px;background:lightblue;color:blue;"><tr><td>
+
+output <form action="chat.gbws" method="get">
+output Name<br /><input type="text" name="name"><br />
+output Message<br /><input type="text" name="message"><br />
+output <br /><input type="submit" value="Send Message">
+output </form>
+
+output </td><td>
+
+output <iframe src="chatlog.html"></iframe>
+
+output </td></tr></table>
+
+output </body></html>
+
+end
